@@ -10,7 +10,7 @@ export default function HomePage() {
     <>
       <section>
         <h1 className="text-3xl font-semibold">Hey, I&apos;m Jay</h1>
-        <p className="text-text-secondary mt-3 leading-relaxed max-w-xl">
+        <p className="text-text-secondary mt-3 leading-relaxed">
           An aspiring engineer from Houston, Texas interested in using AI and hardware to help people.
         </p>
       </section>
