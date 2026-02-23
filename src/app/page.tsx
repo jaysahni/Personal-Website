@@ -9,10 +9,9 @@ export default function HomePage() {
   return (
     <>
       <section>
-        <h1 className="text-3xl font-semibold">hey, i&apos;m jay</h1>
+        <h1 className="text-3xl font-semibold">Hey, I&apos;m Jay</h1>
         <p className="text-text-secondary mt-3 leading-relaxed max-w-xl">
-          a software engineer from Houston, Texas interested in building
-          software that applies AI agents to real-world problems.
+          An aspiring engineer from Houston, Texas interested in using AI and hardware to help people.
         </p>
       </section>
 
@@ -23,9 +22,8 @@ export default function HomePage() {
         <p className="text-text-secondary leading-relaxed">
           I&apos;m currently a Software Engineer at a stealth startup, where we&apos;re
           creating RL environments to improve frontier models. Previously an AI Intern
-          at Nuntius (YC S25). I&apos;m an incoming Electrical Engineering student at
-          Georgia Tech. Outside of work, I enjoy creative writing, playing guitar,
-          and running.
+          at Nuntius (YC S25). Outside of work, I enjoy creative writing, playing guitar,
+          and running. I promise more blog posts are on the way!
         </p>
       </section>
 

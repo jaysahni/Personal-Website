@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Divider from "@/components/ui/Divider";
 import { experiences } from "@/data/experience";
-import { education } from "@/data/education";
+
 import { skillCategories } from "@/data/skills";
 
 export const metadata: Metadata = {
@@ -26,27 +26,6 @@ export default function WorkPage() {
                 <p>{exp.location}</p>
                 {exp.period && <p>{exp.period}</p>}
               </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <Divider />
-
-      <section>
-        <h2 className="text-lg font-medium text-text-primary mb-4">education</h2>
-        <div className="space-y-4">
-          {education.map((edu, i) => (
-            <div key={i} className="flex justify-between items-baseline">
-              <div>
-                <h3 className="text-text-primary font-medium">{edu.institution}</h3>
-                <p className="text-text-secondary text-sm">
-                  {edu.degree} {edu.field}
-                </p>
-              </div>
-              {edu.period && (
-                <p className="text-text-muted text-sm shrink-0 ml-4">{edu.period}</p>
-              )}
             </div>
           ))}
         </div>
