@@ -1,10 +1,9 @@
-import Link from "next/link";
 import Divider from "@/components/ui/Divider";
-import { blogPosts } from "@/data/blog-posts";
+import { getSubstackPosts } from "@/lib/substack";
 import { formatDate } from "@/lib/utils";
 
-export default function HomePage() {
-  const latestPosts = blogPosts.slice(0, 3);
+export default async function HomePage() {
+  const latestPosts = (await getSubstackPosts()).slice(0, 3);
 
   return (
     <>
@@ -34,9 +33,11 @@ export default function HomePage() {
         {latestPosts.length > 0 ? (
           <div className="space-y-4">
             {latestPosts.map((post) => (
-              <div key={post.slug} className="group">
-                <Link
-                  href={`/blog/${post.slug}`}
+              <div key={post.url} className="group">
+                <a
+                  href={post.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="flex items-center justify-between py-2 transition-colors"
                 >
                   <span className="text-text-primary group-hover:text-accent transition-colors">
@@ -47,11 +48,13 @@ export default function HomePage() {
                   </span>
                   <div className="flex items-center gap-3 text-xs text-text-muted">
                     <span>{formatDate(post.date)}</span>
-                    <span className="px-2 py-0.5 bg-surface border border-border rounded text-text-muted">
-                      {post.category}
-                    </span>
+                    {post.category && (
+                      <span className="px-2 py-0.5 bg-surface border border-border rounded text-text-muted">
+                        {post.category}
+                      </span>
+                    )}
                   </div>
-                </Link>
+                </a>
               </div>
             ))}
           </div>

@@ -17,13 +17,12 @@ export interface SkillCategory {
   skills: string[];
 }
 
-export interface BlogPost {
-  slug: string;
+export interface SubstackPost {
   title: string;
+  url: string;
   date: string;
-  category: string;
+  category?: string;
   excerpt?: string;
-  content: string;
 }
 
 export interface ContactLink {

@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { blogPosts } from "@/data/blog-posts";
+import { getSubstackPosts } from "@/lib/substack";
 import { formatDate } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: "Blog",
 };
 
-export default function BlogPage() {
-  const sortedPosts = [...blogPosts].sort(
+export default async function BlogPage() {
+  const posts = await getSubstackPosts();
+  const sortedPosts = [...posts].sort(
     (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
   );
 
@@ -19,9 +19,11 @@ export default function BlogPage() {
       {sortedPosts.length > 0 ? (
         <div className="space-y-1">
           {sortedPosts.map((post) => (
-            <div key={post.slug} className="group border-b border-border">
-              <Link
-                href={`/blog/${post.slug}`}
+            <div key={post.url} className="group border-b border-border">
+              <a
+                href={post.url}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="flex items-center justify-between py-4 transition-colors"
               >
                 <span className="text-text-primary group-hover:text-accent transition-colors">
@@ -32,19 +34,19 @@ export default function BlogPage() {
                 </span>
                 <div className="flex items-center gap-3 text-xs text-text-muted shrink-0 ml-4">
                   <span>{formatDate(post.date)}</span>
-                  <span className="px-2 py-0.5 bg-surface border border-border rounded">
-                    {post.category}
-                  </span>
+                  {post.category && (
+                    <span className="px-2 py-0.5 bg-surface border border-border rounded">
+                      {post.category}
+                    </span>
+                  )}
                 </div>
-              </Link>
+              </a>
             </div>
           ))}
         </div>
       ) : (
         <p className="text-text-muted">no posts yet.</p>
       )}
-
-      <p className="text-text-muted text-sm mt-8">more posts coming soon...</p>
     </>
   );
 }
